@@ -1,0 +1,144 @@
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+
+}
+
+enum UserType {
+  RENTER
+  OWNER
+}
+
+model Profile {
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  clerkId      String     @unique
+  email        String
+  firstName    String
+  lastName     String
+  imageUrl     String
+  userType    UserType
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  properties Property[]
+  favorites   Favorite[]
+  reviews     Review[]
+  bookings    Booking[]
+  messagesSent     Message[]  @relation("SentMessages")
+  messagesReceived Message[]  @relation("ReceivedMessages")
+
+
+}
+
+
+
+model Property {
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  category    String
+  description String
+  sleeps      Int
+  price       Int
+  bedrooms    Int
+  bathrooms   Int
+  beds        Int
+  squareFeet Int
+  images       Json
+  location    Json
+  amenities   Json
+  isFeatured  Boolean  @default(false)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  profile     Profile    @relation(fields: [profileId], references: [clerkId], onDelete: Cascade)
+  profileId   String
+  bookings    Booking[]
+  favorites   Favorite[]
+  reviews     Review[]
+  messages    Message[]
+
+}
+
+
+
+
+model Message {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  body   String
+  email    String
+  phone   String
+  read      Boolean @default(false)
+  sender   Profile  @relation("SentMessages", fields: [senderId], references: [clerkId], onDelete: Cascade)
+  recipient   Profile  @relation("ReceivedMessages",fields: [recipientId], references: [clerkId], onDelete: Cascade)
+  senderId String
+  recipientId String
+  property   Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  propertyId String
+
+}
+
+
+
+
+
+
+model Favorite {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  profile   Profile  @relation(fields: [profileId], references: [clerkId], onDelete: Cascade)
+  profileId String
+  property   Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  propertyId String
+
+}
+
+model Review {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  profile   Profile  @relation(fields: [profileId], references: [clerkId], onDelete: Cascade)
+  profileId String
+  property   Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  propertyId String
+  rating    Int
+  comment   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Booking {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  property   Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  profile   Profile  @relation(fields: [profileId], references: [clerkId], onDelete: Cascade)
+  propertyId String
+  profileId String
+  orderTotal     Int
+  totalNights    Int
+  guests         Int
+  checkIn   DateTime
+  checkOut  DateTime
+  paymentStatus Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+
+
+
+
+
+
+
+
+
