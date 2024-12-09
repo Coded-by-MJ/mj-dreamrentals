@@ -1,8 +1,15 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { FaExclamationCircle } from "react-icons/fa";
-function ErrorPage({ error }: { error: Error & { digest?: string } }) {
+function ErrorPage({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
   return (
     <section className="container bg-transparent min-h-screen ">
       <div className="px-6 py-24 mb-4 shadow-md rounded-md border m-4 md:m-0">
@@ -14,12 +21,22 @@ function ErrorPage({ error }: { error: Error & { digest?: string } }) {
             Something went wrong
           </h1>
           <p className="text-gray-500 text-xl mb-10">{error.toString()}</p>
-          <Link
-            href="/"
-            className="bg-primary hover:bg-primary/50 text-main font-bold py-4 px-6 rounded"
-          >
-            Go Home
-          </Link>
+
+          <div className="flex gap-4 items-center justify-center w-full">
+            <Button
+              variant={"outline"}
+              className="font-bold py-4 px-6 rounded"
+              onClick={() => reset()}
+            >
+              Try again
+            </Button>
+            <Link
+              href="/"
+              className="bg-primary hover:bg-primary/50 text-main font-bold py-4 px-6 rounded"
+            >
+              Go Home
+            </Link>
+          </div>
         </div>
       </div>
     </section>

@@ -74,7 +74,6 @@ function SearchBar() {
                 id="location"
                 placeholder="Enter Location (City, State, Zip, etc)"
                 {...field}
-                defaultValue={field.value}
                 onChange={field.onChange}
                 onBlur={field.onBlur}
                 className="flex-grow border border-foreground h-12 text-ellipsis  text-base bg-transparent  outline-none"

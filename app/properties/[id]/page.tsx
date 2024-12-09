@@ -13,55 +13,51 @@ import { fetchSingleProperty } from "@/utils/actions";
 import FavoriteToggleButton from "@/components/singleProperty/FavoriteToggleButton";
 import type { Metadata, ResolvingMetadata } from "next";
 import ShareButton from "@/components/singleProperty/ShareButton";
-import {
-  PropertiesLoading,
-  SinglePropertyLoading,
-} from "@/components/skeletons/Loadings";
 
-// export async function generateMetadata(
-//   { params }: { params: Promise<{ id: string }> },
-//   parent: ResolvingMetadata
-// ): Promise<Metadata> {
-//   const { id } = await params;
-//   const property = await fetchSingleProperty(id);
+export async function generateMetadata(
+  { params }: { params: Promise<{ id: string }> },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { id } = await params;
+  const property = await fetchSingleProperty(id);
 
-//   const imageUrl =
-//     (property.images as ImageObj[])[3].url ||
-//     "https://opengraph.b-cdn.net/production/images/1a8d4eae-5b6e-4080-8592-dc9d7c476928.png?token=odBlQwQs2d07Ja1ctqBqqvQZCdAZbjCd1D1ZNMf00Lo&height=500&width=500&expires=33268785186";
-//   const description =
-//     property.description.slice(0, 160) ||
-//     "Explore the best vacation rentals in Florida. From beachfront escapes to cozy family stays, plan your next trip with a seamless booking experience. No fees, just memories!";
+  const imageUrl =
+    (property.images as string[])[1] ||
+    "https://opengraph.b-cdn.net/production/images/deb3eaf8-9213-4c4e-af0e-8de80aa42510.png?token=DHLPBicb7XKezsWQZC6hTHwfLjWNf5ges4fBvyFEhHU&height=1067&width=1200&expires=33269743467";
+  const description =
+    property.description.slice(0, 160) ||
+    "Discover your perfect getaway with Dream Rentals! Book unique vacation homes and rentals directly with property owners. Enjoy no booking fees, transparent pricing, and a seamless vacation planning experience.";
 
-//   return {
-//     title: property.name,
-//     description: property.description,
-//     keywords:
-//       "Florida vacation rentals, beachfront homes, Florida getaways, family-friendly stays, no booking fees, Florida vacation homes, vacation rentals Florida, Florida beach rentals",
-//     openGraph: {
-//       title: property.name,
-//       description,
-//       url: `https://floridagetawaysrentals.com/properties/${id}`,
-//       siteName: "Florida Getaways Rentals",
-//       images: [
-//         {
-//           url: imageUrl,
-//           secureUrl: imageUrl, // URL to a preview image
-//           width: 1200,
-//           height: 642,
-//           alt: `${property.name} - Florida Getaways Rentals`,
-//         },
-//       ],
-//       locale: "en_US",
-//       type: "website",
-//     },
-//     twitter: {
-//       card: "summary_large_image",
-//       title: property.name,
-//       description: property.description,
-//       images: [imageUrl],
-//     },
-//   };
-// }
+  return {
+    title: property.name,
+    description: property.description,
+    keywords:
+      "Rentals, beachfront homes, Properties, family-friendly stays, no booking fees",
+    openGraph: {
+      title: property.name,
+      description,
+      url: `https://mj-dreamrentals.vercel.app/properties/${id}`,
+      siteName: "Dream Rentals",
+      images: [
+        {
+          url: imageUrl,
+          secureUrl: imageUrl, // URL to a preview image
+          width: 1200,
+          height: 642,
+          alt: `${property.name} - Dream Rentals`,
+        },
+      ],
+      locale: "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: property.name,
+      description: property.description,
+      images: [imageUrl],
+    },
+  };
+}
 
 async function PropertyPage({
   params,
