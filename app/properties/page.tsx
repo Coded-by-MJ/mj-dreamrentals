@@ -26,7 +26,7 @@ async function PropertiesPage({
         <SearchBar />
       </div>
 
-      <section className="gap-4 grid lg:grid-cols-70/30">
+      <section className="gap-4 grid grid-cols-1 lg:grid-cols-70/30 w-full">
         {properties.length === 0 ? (
           <EmptyList
             heading="No results."
@@ -43,7 +43,7 @@ async function PropertiesPage({
             count={count}
           />
         )}
-        <div className="w-full h-[400px] flex-shrink-0 hidden lg:block">
+        <div className="w-full h-[400px]  hidden lg:block">
           <PropertiesMap propertiesLength={properties.length} />
         </div>
       </section>

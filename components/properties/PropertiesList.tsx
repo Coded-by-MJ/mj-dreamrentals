@@ -8,8 +8,8 @@ import PropertyRating from "../reviews/PropertyRating";
 
 function PropertiesList({ properties }: { properties: Property[] }) {
   return (
-    <div className="grid gap-y-8 pr-3 py-3 flex-grow max-h-[800px] overflow-y-auto scrollbar-thumb-primary scrollbar-track-muted scrollbar-thumb-rounded-md scrollbar-track-rounded-md scrollbar-thin">
-      {properties.map((property) => {
+    <div className="grid grid-cols-1 w-full gap-y-8 pr-3 py-3 max-h-[800px] overflow-y-auto scrollbar-thumb-primary scrollbar-track-muted scrollbar-thumb-rounded-md scrollbar-track-rounded-md scrollbar-thin">
+      {properties.map((property: Property) => {
         const { id, name, category, sleeps, bedrooms, bathrooms, price } =
           property;
         const locationObj = property.location as LocationObj;
@@ -17,7 +17,7 @@ function PropertiesList({ properties }: { properties: Property[] }) {
         return (
           <article
             key={id}
-            className="rounded-2xl  border cursor-pointer flex gap-2 flex-col md:flex-row bg-card shadow-muted  hover:shadow-xl duration-300 group"
+            className="rounded-2xl border cursor-pointer flex gap-2 flex-col md:flex-row bg-card shadow-muted  hover:shadow-xl duration-300 group"
           >
             <CardCarousel
               propertyName={name}

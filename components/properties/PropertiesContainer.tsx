@@ -18,7 +18,7 @@ function PropertiesContainer({
   count: number;
 }) {
   return (
-    <div className="w-full">
+    <>
       <div className="flex justify-between items-center mb-12 border-b border-base-300 pb-5">
         <h4 className="font-medium text-md">
           {count} {count > 1 ? "properties" : "property"}
@@ -40,7 +40,7 @@ function PropertiesContainer({
           />
         </div>
       )}
-    </div>
+    </>
   );
 }
 export default PropertiesContainer;

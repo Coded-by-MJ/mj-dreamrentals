@@ -26,7 +26,7 @@ function CardCarousel({
   return (
     <Carousel
       className={cn(
-        "w-full relative flex-shrink-0",
+        "relative flex-shrink-0",
         layout === "List"
           ? "h-[250px] md:h-[220px] md:w-[320px] w-full "
           : "h-[200px] w-full"
@@ -36,7 +36,7 @@ function CardCarousel({
         {imagesArr.map((image, index) => {
           return (
             <CarouselItem key={index} className="pl-0">
-              <Link href={`/properties/${propertyId}`} className="block h-full">
+              <Link href={`/properties/${propertyId}`} className="block">
                 <Image
                   alt={propertyName}
                   src={image}
