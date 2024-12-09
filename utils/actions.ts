@@ -23,7 +23,6 @@ import {
   uploadPropertyImages,
 } from "@/lib/cloudinary";
 import { Amenity } from "./options";
-import { count, profile } from "console";
 import { Prisma } from "@prisma/client";
 
 const renderError = (error: unknown): actionState => {

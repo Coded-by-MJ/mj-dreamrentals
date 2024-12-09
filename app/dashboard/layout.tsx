@@ -1,11 +1,11 @@
 import { Separator } from "@/components/ui/separator";
 import { confirmUserIsOwner } from "@/utils/actions";
-import { auth } from "@clerk/nextjs/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import Sidebar from "./Sidebar";
 
 async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const { userId } = await auth();
-  const isUserOwner = await confirmUserIsOwner(userId);
+  const user = await currentUser();
+  const isUserOwner = user?.privateMetadata.userType === "OWNER";
 
   return (
     <>

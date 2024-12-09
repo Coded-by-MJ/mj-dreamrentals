@@ -51,7 +51,7 @@ function MessagesWrapper({
   }
 
   return (
-    <section className="flex flex-col gap-5 items-start justify-start">
+    <section className="flex flex-col gap-5 w-full items-start justify-start">
       <h4 className="capitalize">
         total messages received : {allMessages.length}
       </h4>
@@ -97,15 +97,15 @@ function MessagesWrapper({
         {activeMessage ? (
           <>
             <DeleteMessage messageId={activeMessage.id} />
-            <h2 className="text-lg mb-3 text-muted-foreground">
-              <span className="font-semibold">Property Inquiry:</span>{" "}
-              {activeMessage.property.name}
+            <h2 className="text-lg mb-3 text-muted-foreground ">
+              <span className="font-semibold block">Property Inquiry:</span>{" "}
+              <span className="block">{activeMessage.property.name}</span>
             </h2>
 
-            <p className="rounded-md p-4 border text-base  max-w-[400px]">
+            <p className="rounded-md p-4 border text-base w-full max-w-[400px]">
               {activeMessage.body}
             </p>
-            <div className="max-w-[400px] flex items-center justify-between flex-wrap ">
+            <div className="max-w-[400px] w-full flex items-center justify-between flex-wrap ">
               <span className="block text-xs flex-shrink-0">
                 <strong>Sender:</strong> {activeMessage.sender.firstName}{" "}
                 {activeMessage.sender.lastName}
@@ -117,8 +117,8 @@ function MessagesWrapper({
               </span>
             </div>
 
-            <div className="mt-4 flex items-center justify-start gap-4">
-              <div>
+            <div className="mt-4 flex flex-col  items-start md:flex-row md:items-center justify-start gap-4">
+              <div className="flex md:items-center flex-col md:flex-row justify-start">
                 <strong>Reply Email:</strong>{" "}
                 <Button asChild variant={"link"}>
                   <a href={`mailto:${activeMessage.email}`}>
@@ -126,7 +126,7 @@ function MessagesWrapper({
                   </a>
                 </Button>
               </div>
-              <div>
+              <div className="flex md:items-center flex-col md:flex-row justify-start">
                 <strong>Reply Phone:</strong>{" "}
                 <Button asChild variant={"link"}>
                   <a href={`tel:${activeMessage.phone}`}>
