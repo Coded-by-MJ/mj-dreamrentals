@@ -36,7 +36,7 @@ export async function generateMetadata(
     openGraph: {
       title: property.name,
       description,
-      url: `https://mj-dreamrentals.vercel.app/properties/${id}`,
+      url: `https://dreamrentals.miracleibharokhonre.com/properties/${id}`,
       siteName: "Dream Rentals",
       images: [
         {

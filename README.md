@@ -37,7 +37,7 @@ Dream Rentals is a cutting-edge web application designed to streamline vacation 
 
 ## Live Link
 
-- [Dream Rentals](https://mj-dreamrentals.vercel.app/)
+- [Dream Rentals](https://dreamrentals.miracleibharokhonre.com/)
 
 ## Author
 

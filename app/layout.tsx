@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: "Dream Rentals - Book Your Dream Vacation Home",
     description:
       "Discover your perfect getaway with Dream Rentals! Book unique vacation homes and rentals directly with property owners. Enjoy no booking fees, transparent pricing, and a seamless vacation planning experience.",
-    url: "https://mj-dreamrentals.vercel.app/",
+    url: "https://dreamrentals.miracleibharokhonre.com/",
     siteName: "Dream Rentals",
     images: [
       {
