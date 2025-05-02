@@ -8,7 +8,7 @@ import PropertyRating from "../reviews/PropertyRating";
 
 function PropertiesGrid({ properties }: { properties: Property[] }) {
   return (
-    <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3  pr-3 py-3 flex-grow max-h-[800px] overflow-y-auto scrollbar-thumb-primary scrollbar-track-muted scrollbar-thumb-rounded-md scrollbar-track-rounded-md scrollbar-thin">
+    <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3  pr-3 py-3 flex-grow max-h-[1000px] overflow-y-auto scrollbar-thumb-primary scrollbar-track-muted scrollbar-thumb-rounded-md scrollbar-track-rounded-md scrollbar-thin">
       {properties.map((property) => {
         const { id, name, category, sleeps, bedrooms, bathrooms, price } =
           property;

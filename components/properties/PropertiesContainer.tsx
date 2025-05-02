@@ -19,27 +19,29 @@ function PropertiesContainer({
 }) {
   return (
     <>
-      <div className="flex justify-between items-center mb-12 border-b border-base-300 pb-5">
+      <div className="flex col-span-full justify-between items-center mb-6 border-b border-base-300 pb-5">
         <h4 className="font-medium text-md">
           {count} {count > 1 ? "properties" : "property"}
         </h4>
         <LayoutButtons layout={layout} />
       </div>
 
-      {layout === "List" ? (
-        <PropertiesList properties={allProperties} />
-      ) : (
-        <PropertiesGrid properties={allProperties} />
-      )}
+      <div className="col-start-1">
+        {layout === "List" ? (
+          <PropertiesList properties={allProperties} />
+        ) : (
+          <PropertiesGrid properties={allProperties} />
+        )}
 
-      {totalPages > 2 && (
-        <div className="mt-4 flex justify-center items-center">
-          <PaginationContainer
-            currentPage={currentPage}
-            totalPages={totalPages}
-          />
-        </div>
-      )}
+        {totalPages > 2 && (
+          <div className="mt-4 flex justify-center items-center">
+            <PaginationContainer
+              currentPage={currentPage}
+              totalPages={totalPages}
+            />
+          </div>
+        )}
+      </div>
     </>
   );
 }
